@@ -6,7 +6,7 @@
 
 package windows;
 
-import br.unicamp.cogsys.core.entities.MemoryObject;
+import br.unicamp.cst.core.entities.MemoryObject;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;

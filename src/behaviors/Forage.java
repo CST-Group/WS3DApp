@@ -1,8 +1,8 @@
 package behaviors;
 
 
-import br.unicamp.cogsys.core.entities.Codelet;
-import br.unicamp.cogsys.core.entities.MemoryObject;
+import br.unicamp.cst.core.entities.Codelet;
+import br.unicamp.cst.core.entities.MemoryObject;
 import java.util.List;
 import org.json.JSONException;
 import org.json.JSONObject;

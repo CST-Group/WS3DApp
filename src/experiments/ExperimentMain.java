@@ -6,10 +6,10 @@
 
 package experiments;
 
-import br.unicamp.cogsys.core.entities.CodeRack;
-import br.unicamp.cogsys.core.entities.Codelet;
-import br.unicamp.cogsys.core.entities.MemoryObject;
-import br.unicamp.cogsys.core.entities.RawMemory;
+import br.unicamp.cst.core.entities.CodeRack;
+import br.unicamp.cst.core.entities.Codelet;
+import br.unicamp.cst.core.entities.MemoryObject;
+import br.unicamp.cst.core.entities.RawMemory;
 import actuators.HandsActionCodelet;
 import actuators.LegsActionCodelet;
 import behaviors.EatClosestApple;

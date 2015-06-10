@@ -3,9 +3,9 @@
  */
 package perception;
 
-import br.unicamp.cogsys.core.entities.MemoryObject;
-import br.unicamp.cogsys.core.entities.RawMemory;
-import br.unicamp.cogsys.perception.Perception;
+import br.unicamp.cst.core.entities.MemoryObject;
+import br.unicamp.cst.core.entities.RawMemory;
+import br.unicamp.cst.perception.Perception;
 import java.util.Collections;
 import java.util.List;
 import ws3dproxy.model.Thing;

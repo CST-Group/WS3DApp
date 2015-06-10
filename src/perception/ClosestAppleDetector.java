@@ -11,8 +11,8 @@ import java.awt.Point;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import br.unicamp.cogsys.core.entities.MemoryObject;
-import br.unicamp.cogsys.perception.Perception;
+import br.unicamp.cst.core.entities.MemoryObject;
+import br.unicamp.cst.perception.Perception;
 import java.util.Collections;
 import memory.CreatureInnerSense;
 import java.util.List;

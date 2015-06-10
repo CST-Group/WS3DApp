@@ -1,6 +1,6 @@
 package memory;
 
-import br.unicamp.cogsys.core.entities.MemoryObjectType;
+import br.unicamp.cst.core.entities.MemoryObjectType;
 
 /**
  * @author klaus.raizer

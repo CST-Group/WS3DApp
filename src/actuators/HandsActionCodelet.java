@@ -4,8 +4,8 @@ package actuators;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import br.unicamp.cogsys.core.entities.Codelet;
-import br.unicamp.cogsys.core.entities.MemoryObject;
+import br.unicamp.cst.core.entities.Codelet;
+import br.unicamp.cst.core.entities.MemoryObject;
 import java.util.Random;
 import ws3dproxy.model.Creature;
 
