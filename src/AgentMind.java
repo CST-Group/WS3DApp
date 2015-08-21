@@ -4,18 +4,16 @@
  * and open the template in the editor.
  */
 
-package experiments;
 
 import br.unicamp.cst.core.entities.CodeRack;
 import br.unicamp.cst.core.entities.Codelet;
 import br.unicamp.cst.core.entities.MemoryObject;
 import br.unicamp.cst.core.entities.RawMemory;
-import codelets.motor.HandsActionCodelet;
-import codelets.motor.LegsActionCodelet;
 import codelets.behaviors.EatClosestApple;
 import codelets.behaviors.Forage;
 import codelets.behaviors.GoToClosestApple;
-import memory.CreatureInnerSense;
+import codelets.motor.HandsActionCodelet;
+import codelets.motor.LegsActionCodelet;
 import codelets.perception.AppleDetector;
 import codelets.perception.ClosestAppleDetector;
 import codelets.sensors.InnerSense;
@@ -23,29 +21,20 @@ import codelets.sensors.Vision;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.logging.Logger;
+import memory.CreatureInnerSense;
 import support.MindView;
 import ws3dproxy.model.Thing;
-
 
 /**
  *
  * @author rgudwin
  */
-public class ExperimentMain {
-	
-	private static int creatureBasicSpeed=1;
-	private static int reachDistance=50;
-        
-        public Logger logger = Logger.getLogger(ExperimentMain.class.getName());
-        
-        
-        public ExperimentMain() {
-                //WS3DProxy.logger.setLevel(Level.SEVERE);
-                
-                // Create Environment
-                EnvironmentMain env=new EnvironmentMain(); //Creates only a creature and some apples
-		
+public class AgentMind {
+    
+    private static int creatureBasicSpeed=1;
+    private static int reachDistance=50;
+    
+    public AgentMind(Environment env) {
                 // Create RawMemory and Coderack
                 RawMemory rawMemory=RawMemory.getInstance();
 	        CodeRack codeRack=CodeRack.getInstance();
@@ -132,15 +121,6 @@ public class ExperimentMain {
 		
 		// Start Cognitive Cycle
 		codeRack.start(); 
-            
-        }
-
-
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		ExperimentMain em = new ExperimentMain();
-	}
-
+    }             
+    
 }

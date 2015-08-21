@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package experiments;
+
 import ws3dproxy.CommandExecException;
 import ws3dproxy.WS3DProxy;
 import ws3dproxy.model.Creature;
@@ -14,14 +14,14 @@ import ws3dproxy.model.World;
  *
  * @author rgudwin
  */
-public class EnvironmentMain {
+public class Environment {
     
     public String host="localhost";
     public int port = 4011;
     public String robotID="r0";
     public Creature c = null;
     
-    public EnvironmentMain() {
+    public Environment() {
           WS3DProxy proxy = new WS3DProxy();
           try {   
              World w = World.getInstance();
