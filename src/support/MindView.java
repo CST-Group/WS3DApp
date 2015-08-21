@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package windows;
+package support;
 
 import br.unicamp.cst.core.entities.MemoryObject;
 import java.util.ArrayList;

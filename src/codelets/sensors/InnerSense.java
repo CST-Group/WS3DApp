@@ -1,4 +1,4 @@
-package sensors;
+package codelets.sensors;
 
 import br.unicamp.cst.core.entities.Codelet;
 import br.unicamp.cst.core.entities.MemoryObject;

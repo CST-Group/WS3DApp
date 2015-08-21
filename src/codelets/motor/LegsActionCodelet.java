@@ -1,4 +1,4 @@
-package actuators;
+package codelets.motor;
 
 
 import org.json.JSONObject;

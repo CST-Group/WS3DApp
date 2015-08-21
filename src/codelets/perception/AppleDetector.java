@@ -1,7 +1,7 @@
 /**
  * 
  */
-package perception;
+package codelets.perception;
 
 import br.unicamp.cst.core.entities.MemoryObject;
 import br.unicamp.cst.core.entities.RawMemory;

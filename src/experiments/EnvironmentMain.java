@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package environments;
+package experiments;
 import ws3dproxy.CommandExecException;
 import ws3dproxy.WS3DProxy;
 import ws3dproxy.model.Creature;

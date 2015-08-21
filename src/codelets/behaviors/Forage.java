@@ -1,4 +1,4 @@
-package behaviors;
+package codelets.behaviors;
 
 
 import br.unicamp.cst.core.entities.Codelet;

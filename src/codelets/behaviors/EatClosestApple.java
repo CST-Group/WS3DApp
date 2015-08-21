@@ -1,4 +1,4 @@
-package behaviors;
+package codelets.behaviors;
 
 import java.awt.Point;
 import java.awt.geom.Point2D;
