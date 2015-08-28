@@ -33,11 +33,13 @@ public class Vision extends Codelet{
 	@Override
 	public void proc() {
              c.updateState();
+             synchronized (visionMO) {
              List<Thing> lt = c.getThingsInVision();
              //System.out.println("Vision:" + lt.toString());
              visionMO.setI(lt);
-             Class cl = List.class;
-             visionMO.setT(cl);		
+             //Class cl = List.class;
+             //visionMO.setT(cl);
+             }
 	}//end proc()
 
 	@Override

@@ -24,6 +24,7 @@ public class LegsActionCodelet extends Codelet{
 	private String previousLegsAction="";
         private Creature c;
         double old_angle = 0;
+        int k=0;
 
 	public LegsActionCodelet(Creature nc) {
 		c = nc;
@@ -37,7 +38,9 @@ public class LegsActionCodelet extends Codelet{
 	@Override
 	public void proc() {
             
+                System.out.println("old: "+previousLegsAction);
                 String comm = legsActionMO.getInfo();
+                System.out.println("Legs: "+comm+" old: "+previousLegsAction+" k: "+k);
                 if (comm == null) comm = "";
                 Random r = new Random();
 		
@@ -50,21 +53,24 @@ public class LegsActionCodelet extends Codelet{
                                     int x=0,y=0;
                                     String action=command.getString("ACTION");
                                     if(action.equals("FORAGE")){
+                                               //if (!comm.equals(previousLegsAction)) { 
                                                 try {
                                                       x = r.nextInt(600);
                                                       y = r.nextInt(800);
-                                                 c.moveto(1,x,y);
+                                                      if (!comm.equals(previousLegsAction)) System.out.println("Sending Forage command to agent:****** ("+x+","+y+") **********");	
+                                                      c.moveto(1,x,y);
                                                 } catch (Exception e) {
                                                     e.printStackTrace();
                                                 }
-						System.out.println("Sending Forage command to agent:****** ("+x+","+y+") **********");							
+                                               //}
+                                               //else {System.out.println("comm: "+comm+" previous: "+previousLegsAction);}
 					}
                                     else if(action.equals("GOTO")){
                                         if (!comm.equals(previousLegsAction)) {
                                             double speed=command.getDouble("SPEED");
 					    double targetx=command.getDouble("X");
 					    double targety=command.getDouble("Y");
-					    System.out.println("Sending move command to agent: ["+targetx+","+targety+"]");
+					    if (!comm.equals(previousLegsAction)) System.out.println("Sending move command to agent: ["+targetx+","+targety+"]");
                                             try {
                                                  c.moveto(speed, targetx, targety);
                                             } catch(Exception e) {
@@ -72,7 +78,8 @@ public class LegsActionCodelet extends Codelet{
                                             }
 					    previousTargetx=targetx;
 					    previousTargety=targety;
-                                        }   
+                                        }
+                                        //else {System.out.println("comm: "+comm+" previous: "+previousLegsAction);}
 				     }else{
 					System.out.println("Sending stop command to agent");
                                         try {
@@ -82,11 +89,13 @@ public class LegsActionCodelet extends Codelet{
                                         }  
 				     }
                                 }
-				
+			previousLegsAction=legsActionMO.getInfo();
+                        k++;
 				
 			} catch (JSONException e) {e.printStackTrace();}
+                        
 		}
-		previousLegsAction=legsActionMO.getInfo();
+		
 	}//end proc
 
     @Override

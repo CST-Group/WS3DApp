@@ -63,8 +63,9 @@ public class MindView extends javax.swing.JFrame {
         if (mol.size() != 0) 
             for (MemoryObject mo : mol) {
                 if (mo.getI() != null) {
-                    Class cl = mo.getT();
-                    Object k = cl.cast(mo.getI());
+                    //Class cl = mo.getT();
+                    //Object k = cl.cast(mo.getI());
+                    Object k = mo.getI();
                     alltext += mo.name+": "+k+"\n";
                 }
                 else

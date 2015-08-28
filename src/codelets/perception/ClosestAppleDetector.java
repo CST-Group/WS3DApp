@@ -5,14 +5,13 @@ package codelets.perception;
 
 
 
-import java.awt.Point;
+import br.unicamp.cst.core.entities.Codelet;
 
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import br.unicamp.cst.core.entities.MemoryObject;
-import br.unicamp.cst.perception.Perception;
 import java.util.Collections;
 import memory.CreatureInnerSense;
 import java.util.List;
@@ -22,7 +21,7 @@ import ws3dproxy.model.Thing;
  * @author klaus
  *
  */
-public class ClosestAppleDetector extends Perception {
+public class ClosestAppleDetector extends Codelet {
 
 	private MemoryObject knownMO;
 	private MemoryObject closestAppleMO;
@@ -52,8 +51,10 @@ public class ClosestAppleDetector extends Perception {
 	        String closestAppleName;
 	        double appleX;
 	        double appleY;
+                //System.out.println("Processing ClosestAppleDetector Codelet");
             
                 known = Collections.synchronizedList((List<Thing>) knownMO.getI());
+                //System.out.println("known: "+known);
                 //System.out.println(vision.toString());
                 CreatureInnerSense cis = (CreatureInnerSense) innerSenseMO.getI();
                 //System.out.println(closestAppleMO);
@@ -62,7 +63,7 @@ public class ClosestAppleDetector extends Perception {
 			//Extracting self position
 			selfX = cis.position.getX();
 			selfY = cis.position.getY();
-                        //System.out.println(selfX+" "+selfY);
+                        //System.out.println("self: "+selfX+","+selfY);
 			//Point self = new Point();
 
 			//Iterate over objects in vision, looking for the closest apple
@@ -91,6 +92,7 @@ public class ClosestAppleDetector extends Perception {
 				}
 			 }
                         }
+                        //System.out.println("Achou: "+closestAppleName+","+closestAppleX+","+closestAppleY);
 			if(closestAppleName!=null){
 				JSONObject jsonInfo=new JSONObject();	
 				try {
@@ -100,8 +102,9 @@ public class ClosestAppleDetector extends Perception {
 					if(!closestAppleMO.getInfo().equals(jsonInfo.toString())){
 						closestAppleMO.updateInfo(jsonInfo.toString());
                                                 closestAppleMO.setI(closest_apple);
-//						System.out.println("closestAppleMO: "+closestAppleMO);
+						//System.out.println("Achou: "+closestAppleMO.getInfo());
 					}
+                                        //else System.out.println("closestAppleMO: "+closestAppleX+","+closestAppleY+" self:"+selfX+","+selfY);
 				} catch (JSONException e) {
 					e.printStackTrace();
 				}
@@ -109,6 +112,7 @@ public class ClosestAppleDetector extends Perception {
 				closestAppleMO.updateInfo(""); //couldn't find any nearby apples
                                 closest_apple = null;
                                 closestAppleMO.setI(closest_apple);
+                                //System.out.println("Naoachou: "+ known);
 			}
 
 //						System.out.println(closestAppleMO.getInfo());
@@ -117,6 +121,7 @@ public class ClosestAppleDetector extends Perception {
 			closestAppleMO.updateInfo("");
                         closest_apple = null;
                         closestAppleMO.setI(closest_apple);
+                        //System.out.println("Naoachou2: "+closestAppleMO.getInfo()+" known:"+known);
 		}
 //		System.out.println("closestAppleMO: "+closestAppleMO);
                 //System.out.println("Closest Apple: "+closest_apple+" "+closestAppleMO.getInfo());
