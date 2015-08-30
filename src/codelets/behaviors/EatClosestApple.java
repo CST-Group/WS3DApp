@@ -10,6 +10,7 @@ import br.unicamp.cst.core.entities.Codelet;
 import br.unicamp.cst.core.entities.MemoryObject;
 import memory.CreatureInnerSense;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 import ws3dproxy.model.Thing;
 
 public class EatClosestApple extends Codelet {
@@ -103,13 +104,16 @@ public class EatClosestApple extends Codelet {
         public void DestroyClosestApple() {
            int r = -1;
            int i = 0;
-           for (Thing t : known) {
+           synchronized(known) {
+             CopyOnWriteArrayList<Thing> myknown = new CopyOnWriteArrayList<>(known);  
+             for (Thing t : known) {
               if (closestApple != null) 
                  if (t.getName().equals(closestApple.getName())) r = i;
               i++;
-           }   
-           if (r != -1) known.remove(r);
-           closestApple = null;
+             }   
+             if (r != -1) known.remove(r);
+             closestApple = null;
+           }
         }
 
 }

@@ -38,9 +38,9 @@ public class LegsActionCodelet extends Codelet{
 	@Override
 	public void proc() {
             
-                System.out.println("old: "+previousLegsAction);
+                //System.out.println(legsActionMO.toString()+" old: "+previousLegsAction+previousLegsAction.hashCode());
                 String comm = legsActionMO.getInfo();
-                System.out.println("Legs: "+comm+" old: "+previousLegsAction+" k: "+k);
+                //System.out.println("Legs: "+comm+" old: "+previousLegsAction+" k: "+k);
                 if (comm == null) comm = "";
                 Random r = new Random();
 		
@@ -89,7 +89,9 @@ public class LegsActionCodelet extends Codelet{
                                         }  
 				     }
                                 }
-			previousLegsAction=legsActionMO.getInfo();
+                        //System.out.println("oldvalue:"+previousLegsAction.hashCode()+" new:"+legsActionMO.getInfo().hashCode());        
+			previousLegsAction=comm;
+                        //System.out.println("oldvalue2:"+previousLegsAction.hashCode()+" new2:"+legsActionMO.getInfo().hashCode());        
                         k++;
 				
 			} catch (JSONException e) {e.printStackTrace();}

@@ -15,6 +15,7 @@ import br.unicamp.cst.core.entities.MemoryObject;
 import java.util.Collections;
 import memory.CreatureInnerSense;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 import ws3dproxy.model.Thing;
 
 /**
@@ -59,6 +60,7 @@ public class ClosestAppleDetector extends Codelet {
                 CreatureInnerSense cis = (CreatureInnerSense) innerSenseMO.getI();
                 //System.out.println(closestAppleMO);
                 //System.out.println("closestAppleMO proc");
+                synchronized(known) {
 		if(known.size() != 0){
 			//Extracting self position
 			selfX = cis.position.getX();
@@ -68,8 +70,8 @@ public class ClosestAppleDetector extends Codelet {
 
 			//Iterate over objects in vision, looking for the closest apple
 			closestAppleName=null;
-                        synchronized(known) {
-                         for (Thing t : known) {
+                        CopyOnWriteArrayList<Thing> myknown = new CopyOnWriteArrayList<>(known);
+                         for (Thing t : myknown) {
 				objectName=t.getName();
 				if(objectName.contains("PFood") && !objectName.contains("NPFood")){ //Then, it is an apple
 					appleX=t.getX1();
@@ -91,7 +93,7 @@ public class ClosestAppleDetector extends Codelet {
 					}
 				}
 			 }
-                        }
+                        
                         //System.out.println("Achou: "+closestAppleName+","+closestAppleX+","+closestAppleY);
 			if(closestAppleName!=null){
 				JSONObject jsonInfo=new JSONObject();	
@@ -116,13 +118,14 @@ public class ClosestAppleDetector extends Codelet {
 			}
 
 //						System.out.println(closestAppleMO.getInfo());
-
+                
 		}else{
 			closestAppleMO.updateInfo("");
                         closest_apple = null;
                         closestAppleMO.setI(closest_apple);
                         //System.out.println("Naoachou2: "+closestAppleMO.getInfo()+" known:"+known);
 		}
+                }
 //		System.out.println("closestAppleMO: "+closestAppleMO);
                 //System.out.println("Closest Apple: "+closest_apple+" "+closestAppleMO.getInfo());
 	}//end proc

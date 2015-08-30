@@ -58,13 +58,15 @@ public class AppleDetector extends Codelet {
             for (Thing t : vision) {
                boolean found = false;
                synchronized(known) {
-                  for (Thing e : known)
+                  CopyOnWriteArrayList<Thing> myknown = new CopyOnWriteArrayList<>(known);
+                  for (Thing e : myknown)
                     if (t.getName().equals(e.getName())) {
                       found = true;
                       break;
                     }
+                  if (found == false && t.getName().contains("PFood") && !t.getName().contains("NPFood")) known.add(t);
                }
-               if (found == false && t.getName().contains("PFood") && !t.getName().contains("NPFood")) known.add(t);
+               
             }
             }
             }
