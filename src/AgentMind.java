@@ -28,14 +28,15 @@ import ws3dproxy.model.Thing;
  *
  * @author rgudwin
  */
-public class AgentMind {
+public class AgentMind extends Mind {
     
     private static int creatureBasicSpeed=1;
     private static int reachDistance=50;
     
     public AgentMind(Environment env) {
+                super();
                 // Create RawMemory and Coderack
-                Mind m = new Mind();
+                //Mind m = new Mind();
                 //RawMemory rawMemory=RawMemory.getInstance();
 	        //CodeRack codeRack=CodeRack.getInstance();
                 
@@ -48,16 +49,16 @@ public class AgentMind {
                 MemoryObject knownApplesMO;
                 
                 //Initialize Memory Objects
-                legsMO=m.createMemoryObject("LEGS");
-		handsMO=m.createMemoryObject("HANDS");
+                legsMO=createMemoryObject("LEGS");
+		handsMO=createMemoryObject("HANDS");
                 List<Thing> vision_list = Collections.synchronizedList(new ArrayList<Thing>());
-		visionMO=m.createMemoryObject("VISION",vision_list);
+		visionMO=createMemoryObject("VISION",vision_list);
                 CreatureInnerSense cis = new CreatureInnerSense();
-		innerSenseMO=m.createMemoryObject("INNER", cis);
+		innerSenseMO=createMemoryObject("INNER", cis);
                 Thing closestApple = null;
-                closestAppleMO=m.createMemoryObject("CLOSEST_APPLE", closestApple);
+                closestAppleMO=createMemoryObject("CLOSEST_APPLE", closestApple);
                 List<Thing> knownApples = Collections.synchronizedList(new ArrayList<Thing>());
-                knownApplesMO=m.createMemoryObject("KNOWN_APPLES", knownApples);
+                knownApplesMO=createMemoryObject("KNOWN_APPLES", knownApples);
                 
                 // Create and Populate MindViewer
                 MindView mv = new MindView("MindView");
@@ -73,54 +74,54 @@ public class AgentMind {
 		// Create Sensor Codelets	
 		Codelet vision=new Vision(env.c);
 		vision.addOutput(visionMO);
-                m.insertCodelet(vision); //Creates a vision sensor
+                insertCodelet(vision); //Creates a vision sensor
 		
 		Codelet innerSense=new InnerSense(env.c);
 		innerSense.addOutput(innerSenseMO);
-                m.insertCodelet(innerSense); //A sensor for the inner state of the creature
+                insertCodelet(innerSense); //A sensor for the inner state of the creature
 		
 		// Create Actuator Codelets
 		Codelet legs=new LegsActionCodelet(env.c);
 		legs.addInput(legsMO);
-                m.insertCodelet(legs);
+                insertCodelet(legs);
 
 		Codelet hands=new HandsActionCodelet(env.c);
 		hands.addInput(handsMO);
-                m.insertCodelet(hands);
+                insertCodelet(hands);
 		
 		// Create Perception Codelets
                 Codelet ad = new AppleDetector();
                 ad.addInput(visionMO);
                 ad.addOutput(knownApplesMO);
-                m.insertCodelet(ad);
+                insertCodelet(ad);
                 
 		Codelet closestAppleDetector = new ClosestAppleDetector();
 		closestAppleDetector.addInput(knownApplesMO);
 		closestAppleDetector.addInput(innerSenseMO);
 		closestAppleDetector.addOutput(closestAppleMO);
-                m.insertCodelet(closestAppleDetector);
+                insertCodelet(closestAppleDetector);
 		
 		// Create Behavior Codelets
 		Codelet goToClosestApple = new GoToClosestApple(creatureBasicSpeed,reachDistance);
 		goToClosestApple.addInput(closestAppleMO);
 		goToClosestApple.addInput(innerSenseMO);
 		goToClosestApple.addOutput(legsMO);
-                m.insertCodelet(goToClosestApple);
+                insertCodelet(goToClosestApple);
 		
 		Codelet eatApple=new EatClosestApple(reachDistance);
 		eatApple.addInput(closestAppleMO);
 		eatApple.addInput(innerSenseMO);
 		eatApple.addOutput(handsMO);
                 eatApple.addOutput(knownApplesMO);
-                m.insertCodelet(eatApple);
+                insertCodelet(eatApple);
                 
                 Codelet forage=new Forage();
 		forage.addInput(knownApplesMO);
                 forage.addOutput(legsMO);
-                m.insertCodelet(forage);
+                insertCodelet(forage);
 		
 		// Start Cognitive Cycle
-		m.start(); 
+		start(); 
     }             
     
 }
