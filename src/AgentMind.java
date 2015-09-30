@@ -49,8 +49,8 @@ public class AgentMind extends Mind {
                 MemoryObject knownApplesMO;
                 
                 //Initialize Memory Objects
-                legsMO=createMemoryObject("LEGS");
-		handsMO=createMemoryObject("HANDS");
+                legsMO=createMemoryObject("LEGS", "");
+		handsMO=createMemoryObject("HANDS", "");
                 List<Thing> vision_list = Collections.synchronizedList(new ArrayList<Thing>());
 		visionMO=createMemoryObject("VISION",vision_list);
                 CreatureInnerSense cis = new CreatureInnerSense();

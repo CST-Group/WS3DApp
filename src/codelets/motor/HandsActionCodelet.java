@@ -34,7 +34,7 @@ public class HandsActionCodelet extends Codelet{
 	}
 	public void proc() {
             
-                String command = handsMO.getInfo();
+                String command = (String) handsMO.getI();
 
 		if(!command.equals("") && (!command.equals(previousHandsAction))){
 			JSONObject jsonAction;
@@ -91,7 +91,7 @@ public class HandsActionCodelet extends Codelet{
 
 		}
 //		System.out.println("OK_hands");
-		previousHandsAction=handsMO.getInfo();
+		previousHandsAction = (String) handsMO.getI();
 	}//end proc
 
     @Override

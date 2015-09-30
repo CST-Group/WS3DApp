@@ -36,7 +36,7 @@ public class Forage extends Codelet {
 		JSONObject message=new JSONObject();
 			try {
 				message.put("ACTION", "FORAGE");
-				legsMO.updateInfo(message.toString());
+				legsMO.updateI(message.toString());
 			
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block

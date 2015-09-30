@@ -39,7 +39,7 @@ public class LegsActionCodelet extends Codelet{
 	public void proc() {
             
                 //System.out.println(legsActionMO.toString()+" old: "+previousLegsAction+previousLegsAction.hashCode());
-                String comm = legsActionMO.getInfo();
+                String comm = (String) legsActionMO.getI();
                 //System.out.println("Legs: "+comm+" old: "+previousLegsAction+" k: "+k);
                 if (comm == null) comm = "";
                 Random r = new Random();
@@ -57,8 +57,12 @@ public class LegsActionCodelet extends Codelet{
                                                 try {
                                                       x = r.nextInt(600);
                                                       y = r.nextInt(800);
-                                                      if (!comm.equals(previousLegsAction)) System.out.println("Sending Forage command to agent:****** ("+x+","+y+") **********");	
-                                                      c.moveto(1,x,y);
+                                                      if (!comm.equals(previousLegsAction)) 
+                                                          System.out.println("Sending Forage command to agent:****** ("+x+","+y+") **********");
+                                                      c.rotate(5);
+                                                      	
+                                                      //c.moveto(1,x,y);
+                                                      
                                                 } catch (Exception e) {
                                                     e.printStackTrace();
                                                 }

@@ -6,11 +6,6 @@ package codelets.perception;
 
 
 import br.unicamp.cst.core.entities.Codelet;
-
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import br.unicamp.cst.core.entities.MemoryObject;
 import java.util.Collections;
 import memory.CreatureInnerSense;
@@ -31,7 +26,6 @@ public class ClosestAppleDetector extends Codelet {
         private List<Thing> known;
 
 	public ClosestAppleDetector() {
-
 	}
 
 
@@ -44,95 +38,53 @@ public class ClosestAppleDetector extends Codelet {
 	@Override
 	public void proc() {
                 Thing closest_apple=null;
-                double selfX;
-	        double selfY;
-	        String objectName;
-	        double closestAppleX=0;
-	        double closestAppleY=0;
-	        String closestAppleName;
-	        double appleX;
-	        double appleY;
-                //System.out.println("Processing ClosestAppleDetector Codelet");
-            
                 known = Collections.synchronizedList((List<Thing>) knownMO.getI());
-                //System.out.println("known: "+known);
-                //System.out.println(vision.toString());
                 CreatureInnerSense cis = (CreatureInnerSense) innerSenseMO.getI();
-                //System.out.println(closestAppleMO);
-                //System.out.println("closestAppleMO proc");
                 synchronized(known) {
-		if(known.size() != 0){
-			//Extracting self position
-			selfX = cis.position.getX();
-			selfY = cis.position.getY();
-                        //System.out.println("self: "+selfX+","+selfY);
-			//Point self = new Point();
-
+		   if(known.size() != 0){
 			//Iterate over objects in vision, looking for the closest apple
-			closestAppleName=null;
                         CopyOnWriteArrayList<Thing> myknown = new CopyOnWriteArrayList<>(known);
-                         for (Thing t : myknown) {
-				objectName=t.getName();
+                        for (Thing t : myknown) {
+				String objectName=t.getName();
 				if(objectName.contains("PFood") && !objectName.contains("NPFood")){ //Then, it is an apple
-					appleX=t.getX1();
-					appleY=t.getY1();
-					if(closestAppleName==null){
+                                        if(closest_apple == null){    
                                                 closest_apple = t;
-						closestAppleName=objectName;
-						closestAppleX=appleX;
-						closestAppleY=appleY;
-					}else{
-						double Dnew=Math.sqrt(Math.pow(appleX-selfX, 2)+Math.pow(appleY-selfY, 2));
-						double Dclosest=Math.sqrt(Math.pow(closestAppleX-selfX, 2)+Math.pow(closestAppleY-selfY, 2));
+					}
+                                        else {
+						double Dnew = calculateDistance(t.getX1(), t.getY1(), cis.position.getX(), cis.position.getY());
+                                                double Dclosest= calculateDistance(closest_apple.getX1(), closest_apple.getY1(), cis.position.getX(), cis.position.getY());
 						if(Dnew<Dclosest){
-							closestAppleName=objectName;
-							closestAppleX=appleX;
-							closestAppleY=appleY;
                                                         closest_apple = t;
 						}
 					}
 				}
-			 }
+			}
                         
-                        //System.out.println("Achou: "+closestAppleName+","+closestAppleX+","+closestAppleY);
-			if(closestAppleName!=null){
-				JSONObject jsonInfo=new JSONObject();	
-				try {
-					jsonInfo.put("NAME", closestAppleName);
-					jsonInfo.put("X", closestAppleX);
-					jsonInfo.put("Y", closestAppleY);
-					if(!closestAppleMO.getInfo().equals(jsonInfo.toString())){
-						closestAppleMO.updateInfo(jsonInfo.toString());
-                                                closestAppleMO.setI(closest_apple);
-						//System.out.println("Achou: "+closestAppleMO.getInfo());
-					}
-                                        //else System.out.println("closestAppleMO: "+closestAppleX+","+closestAppleY+" self:"+selfX+","+selfY);
-				} catch (JSONException e) {
-					e.printStackTrace();
+                        if(closest_apple!=null){    
+				if(closestAppleMO.getI() == null || !closestAppleMO.getI().equals(closest_apple)){
+                                      closestAppleMO.setI(closest_apple);
 				}
+				
 			}else{
-				closestAppleMO.updateInfo(""); //couldn't find any nearby apples
+				//couldn't find any nearby apples
                                 closest_apple = null;
                                 closestAppleMO.setI(closest_apple);
-                                //System.out.println("Naoachou: "+ known);
 			}
-
-//						System.out.println(closestAppleMO.getInfo());
-                
-		}else{
-			closestAppleMO.updateInfo("");
+		   }
+                   else  { // if there are no known apples closest_apple must be null
                         closest_apple = null;
                         closestAppleMO.setI(closest_apple);
-                        //System.out.println("Naoachou2: "+closestAppleMO.getInfo()+" known:"+known);
-		}
+		   }
                 }
-//		System.out.println("closestAppleMO: "+closestAppleMO);
-                //System.out.println("Closest Apple: "+closest_apple+" "+closestAppleMO.getInfo());
 	}//end proc
 
 @Override
         public void calculateActivation() {
         
+        }
+        
+        private double calculateDistance(double x1, double y1, double x2, double y2) {
+            return(Math.sqrt(Math.pow(x1-x2, 2)+Math.pow(y1-y2, 2)));
         }
 
 }

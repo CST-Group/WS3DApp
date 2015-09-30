@@ -69,7 +69,7 @@ public class MindView extends javax.swing.JFrame {
                     alltext += mo.name+": "+k+"\n";
                 }
                 else
-                    alltext += mo.name+": "+mo.getInfo()+"\n";
+                    alltext += mo.name+": "+mo.getI()+"\n";
                 
             }   
         text.setText(alltext);

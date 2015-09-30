@@ -75,10 +75,10 @@ public class EatClosestApple extends Codelet {
 				if(distance<reachDistance){ //eat it						
 					message.put("OBJECT", appleName);
 					message.put("ACTION", "EATIT");
-					handsMO.updateInfo(message.toString());
+					handsMO.updateI(message.toString());
                                         DestroyClosestApple();
 				}else{
-					handsMO.updateInfo("");	//nothing
+					handsMO.updateI("");	//nothing
 				}
 				
 //				System.out.println(message);
@@ -87,7 +87,7 @@ public class EatClosestApple extends Codelet {
 				e.printStackTrace();
 			}
 		}else{
-			handsMO.updateInfo("");	//nothing
+			handsMO.updateI("");	//nothing
 		}
         //System.out.println("Before: "+known.size()+ " "+known);
         
