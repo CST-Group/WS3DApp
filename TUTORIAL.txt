@@ -1,45 +1,12 @@
 //************************************************************************
-// Tutorial for WorldServer3D application with the Tricog Architecture
+// Tutorial for WS3DApp using CST
 //
-//Author: Klaus Raizer
-//Date: August 19th 2013
+//Author: Ricardo R. Gudwin
+//Date: October, 16th 2015
 //************************************************************************
 
+The full tutorial for using WS3DApp can now be read at:
 
+http://cst.fee.unicamp.br/tutorials/CoreModelTrail
 
-  This tutorial intends to instruct you on how to start working with World Server 
- 3D and perform experiments with it using the Tricog Cognitive architecture.
- 
-  Libraries for both the WordlServer3D (WS3D) and the cognitive architecture are available at this 
-  very same server and can be downloaded as new projects in Eclipse.
-  
-   More information on WS3D and Tricog can be seen in the following articles:
-   
-   [de Castro 2010] An Episodic Memory Implementation for a Virtual Creature
-   Link (19/11/2012): http://link.springer.com/chapter/10.1007%2F978-3-642-15223-8_22?LI=true
-   
-   [Raizer 2011] A cognitive neuroscience-inspired codelet-based cognitive architecture for the control of artiﬁcial creatures with incremental levels of machine consciousness.
-   In Proceedings of a symposium at the AISB11 Convention. Machine Consciousness 2011: Self, Integration and Explanation
-   
-   [Raizer 2012] A COGNITIVE ARCHITECTURE WITH INCREMENTAL LEVELS OF MACHINE CONSCIOUSNESS INSPIRED BY COGNITIVE NEUROSCIENCE
-   International Journal of Machine Consciousness Special Issue on Machine Consciousness: Self, Integration and Explanation Selected Papers from the 2011 AISB Workshop
-   
-   In order to have this application up and running, you must perform the following steps using Eclipse:
-   
-
-1) After downloading this project, go to "Configure Build Path..." and add the jars from "lib" folder.
-Now, add the jar containing the cognitive architecture (tricog_v****.jar). 
- 
- At this point, there should be no errors in your WordlServer3DApplication project.
- 
-2) Run a WorldServer3D server at your local machine
-
-3) Run Experiment0 from: br.unicamp.cogsys.worldServer3DApplication.experiments
-
-It should start creating some apples in WS3D and then should create a robot creature.
-The cognitive architecture loaded in Experiment0 will control the creature in such a 
-way that it will go after the closest apple on sight, and eat it when it gets close enough.
-
-Note: At current implementation, WS3D might produce a few null pointer exceptions regarding
- GetFullStatus3D command in Main.java. It should stop by itself after a few moments.
-  
+     
