@@ -26,6 +26,7 @@ import org.json.JSONObject;
 import br.unicamp.cst.core.entities.Codelet;
 import br.unicamp.cst.core.entities.MemoryObject;
 import java.util.Random;
+import java.util.logging.Logger;
 import ws3dproxy.model.Creature;
 
 /**
@@ -42,6 +43,7 @@ public class HandsActionCodelet extends Codelet{
 	private String previousHandsAction="";
         private Creature c;
         private Random r = new Random();
+        static Logger log = Logger.getLogger(HandsActionCodelet.class.getCanonicalName());
 
 	public HandsActionCodelet(Creature nc) {
                 c = nc;
@@ -68,7 +70,7 @@ public class HandsActionCodelet extends Codelet{
                                                 } catch (Exception e) {
                                                     
                                                 } 
-						System.out.println("Sending Put In Sack command to agent:****** "+objectName+"**********");							
+						log.info("Sending Put In Sack command to agent:****** "+objectName+"**********");							
 						
 						
 						//							}
@@ -79,7 +81,7 @@ public class HandsActionCodelet extends Codelet{
                                                 } catch (Exception e) {
                                                     
                                                 }
-						System.out.println("Sending Eat command to agent:****** "+objectName+"**********");							
+						log.info("Sending Eat command to agent:****** "+objectName+"**********");							
 					}
 					if(action.equals("BURY")){
                                                 try {
@@ -87,7 +89,7 @@ public class HandsActionCodelet extends Codelet{
                                                 } catch (Exception e) {
                                                     
                                                 }
-						System.out.println("Sending Bury command to agent:****** "+objectName+"**********");							
+						log.info("Sending Bury command to agent:****** "+objectName+"**********");							
 					}
 				}
 //                                else if (jsonAction.has("ACTION")) {
