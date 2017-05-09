@@ -43,8 +43,7 @@ public class Forage extends Codelet {
 	/**
 	 * Default constructor
 	 */
-	public Forage(){
-		
+	public Forage(){       
 	}
 
 	@Override
@@ -66,8 +65,8 @@ public class Forage extends Codelet {
 
 	@Override
 	public void accessMemoryObjects() {
-            knownMO = this.getInput("KNOWN_APPLES");
-            legsMO=this.getOutput("LEGS");
+            knownMO = (MemoryObject)this.getInput("KNOWN_APPLES");
+            legsMO=(MemoryObject)this.getOutput("LEGS");
 
 		// TODO Auto-generated method stub
 		

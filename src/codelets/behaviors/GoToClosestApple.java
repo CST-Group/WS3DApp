@@ -44,9 +44,9 @@ public class GoToClosestApple extends Codelet {
 
 	@Override
 	public void accessMemoryObjects() {
-		closestAppleMO=this.getInput("CLOSEST_APPLE");
-		selfInfoMO=this.getInput("INNER");
-		legsMO=this.getOutput("LEGS");
+		closestAppleMO=(MemoryObject)this.getInput("CLOSEST_APPLE");
+		selfInfoMO=(MemoryObject)this.getInput("INNER");
+		legsMO=(MemoryObject)this.getOutput("LEGS");
 	}
 
 	@Override

@@ -47,10 +47,6 @@ public class AgentMind extends Mind {
     
     public AgentMind(Environment env) {
                 super();
-                // Create RawMemory and Coderack
-                //Mind m = new Mind();
-                //RawMemory rawMemory=RawMemory.getInstance();
-	        //CodeRack codeRack=CodeRack.getInstance();
                 
                 // Declare Memory Objects
 	        MemoryObject legsMO;
@@ -131,6 +127,10 @@ public class AgentMind extends Mind {
 		forage.addInput(knownApplesMO);
                 forage.addOutput(legsMO);
                 insertCodelet(forage);
+                
+                // sets a time step for running the codelets to avoid heating too much your machine
+                for (Codelet c : this.getCodeRack().getAllCodelets())
+                    c.setTimeStep(200);
 		
 		// Start Cognitive Cycle
 		start(); 

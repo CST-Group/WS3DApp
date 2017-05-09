@@ -34,7 +34,7 @@ public class CreatureInnerSense {
     
     public String toString() {
         if (position != null)
-            return("Position: "+(int)position.getX()+","+(int)position.getY()+" Pitch: "+pitch+" Fuel: "+fuel);
+            return("Position: ("+(int)position.getX()+","+(int)position.getY()+") Pitch: "+(int)pitch+" Fuel: "+fuel);
         else 
             return("Position: null,null"+" Pitch: "+pitch+" Fuel: "+fuel);
     }

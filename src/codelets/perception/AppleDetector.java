@@ -46,9 +46,9 @@ public class AppleDetector extends Codelet {
 	@Override
 	public void accessMemoryObjects() {
                 synchronized(this) {
-		    this.visionMO=this.getInput("VISION");
+		    this.visionMO=(MemoryObject)this.getInput("VISION");
                 }
-		this.knownApplesMO=this.getOutput("KNOWN_APPLES");
+		this.knownApplesMO=(MemoryObject)this.getOutput("KNOWN_APPLES");
 	}
 
 	@Override

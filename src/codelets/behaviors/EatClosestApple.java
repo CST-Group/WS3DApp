@@ -44,15 +44,16 @@ public class EatClosestApple extends Codelet {
         List<Thing> known;
 
 	public EatClosestApple(int reachDistance) {
+                setTimeStep(50);
 		this.reachDistance=reachDistance;
 	}
 
 	@Override
 	public void accessMemoryObjects() {
-		closestAppleMO=this.getInput("CLOSEST_APPLE");
-		innerSenseMO=this.getInput("INNER");
-		handsMO=this.getOutput("HANDS");
-                knownMO = this.getOutput("KNOWN_APPLES");
+		closestAppleMO=(MemoryObject)this.getInput("CLOSEST_APPLE");
+		innerSenseMO=(MemoryObject)this.getInput("INNER");
+		handsMO=(MemoryObject)this.getOutput("HANDS");
+                knownMO = (MemoryObject)this.getOutput("KNOWN_APPLES");
 	}
 
 	@Override

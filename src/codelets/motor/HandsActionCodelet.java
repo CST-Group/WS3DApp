@@ -51,7 +51,7 @@ public class HandsActionCodelet extends Codelet{
 	
         @Override
 	public void accessMemoryObjects() {
-		handsMO=this.getInput("HANDS");
+		handsMO=(MemoryObject)this.getInput("HANDS");
 	}
 	public void proc() {
             

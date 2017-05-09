@@ -46,7 +46,7 @@ public class Vision extends Codelet{
 
 	@Override
 	public void accessMemoryObjects() {
-		visionMO=this.getOutput("VISION");
+		visionMO=(MemoryObject)this.getOutput("VISION");
 	}
 
 	@Override

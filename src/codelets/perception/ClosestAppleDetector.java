@@ -47,9 +47,9 @@ public class ClosestAppleDetector extends Codelet {
 
 	@Override
 	public void accessMemoryObjects() {
-		this.knownMO=this.getInput("KNOWN_APPLES");
-		this.innerSenseMO=this.getInput("INNER");
-		this.closestAppleMO=this.getOutput("CLOSEST_APPLE");	
+		this.knownMO=(MemoryObject)this.getInput("KNOWN_APPLES");
+		this.innerSenseMO=(MemoryObject)this.getInput("INNER");
+		this.closestAppleMO=(MemoryObject)this.getOutput("CLOSEST_APPLE");	
 	}
 	@Override
 	public void proc() {

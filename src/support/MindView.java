@@ -25,7 +25,10 @@ import java.util.List;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.CopyOnWriteArrayList;
+import ws3dproxy.model.Thing;
 import ws3dproxy.model.World;
+import ws3dproxy.util.Constants;
 
 class MVTimerTask extends TimerTask {
     MindView mv;
@@ -68,7 +71,7 @@ public class MindView extends javax.swing.JFrame {
     public void StartTimer() {
         t = new Timer();
         MVTimerTask tt = new MVTimerTask(this);
-        t.scheduleAtFixedRate(tt,0,250);
+        t.scheduleAtFixedRate(tt,0,500);
     }
     
     public void tick() {
@@ -79,15 +82,34 @@ public class MindView extends javax.swing.JFrame {
                     //Class cl = mo.getT();
                     //Object k = cl.cast(mo.getI());
                     Object k = mo.getI();
-                    alltext += mo.name+": "+k+"\n";
+                    String moName = mo.getName();
+                    if (moName.equals("KNOWN_APPLES") || moName.equals("VISION")) {
+                        //alltext += mo.getName()+": "+k+"<-> ";
+                        alltext += mo.getName()+": [ ";
+                        CopyOnWriteArrayList<Thing> l = new CopyOnWriteArrayList<>((List<Thing>)k);
+                        for (Thing t : l) {
+                            String kindofthing = "t";
+                            if (t.getCategory() == Constants.categoryPFOOD) kindofthing = "a";
+                            alltext += kindofthing+"("+(int)(t.getX1()+t.getX2())/2+","+(int)(t.getY1()+t.getY2())/2+") ";
+                        }    
+                        alltext += "]\n";
+                    }
+                    else if (moName.equals("CLOSEST_APPLE")) {
+                        Thing t = (Thing)k;
+                        String kindofthing = "t";
+                        if (t.getCategory() == 21) kindofthing = "a";
+                        alltext += moName+": "+kindofthing+"("+(int)(t.getX1()+t.getX2())/2+","+(int)(t.getY1()+t.getY2())/2+")\n";
+                    }
+                    else     
+                    alltext += mo.getName()+": "+k+"\n";
                 }
                 else
-                    alltext += mo.name+": "+mo.getI()+"\n";
-                
+                    //alltext += mo.getName()+": "+mo.getI()+"\n";
+                    alltext += mo.getName()+":\n";
             }   
         text.setText(alltext);
         j++;
-        if (j == 40) {
+        if (j == 7) {
             try {
               World.createFood(0,r.nextInt(800) , r.nextInt(600));
             } catch (Exception e) {
@@ -120,11 +142,11 @@ public class MindView extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 568, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();

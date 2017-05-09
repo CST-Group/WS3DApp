@@ -53,7 +53,7 @@ public class LegsActionCodelet extends Codelet{
 	
 	@Override
 	public void accessMemoryObjects() {
-		legsActionMO=this.getInput("LEGS");
+		legsActionMO=(MemoryObject)this.getInput("LEGS");
 	}
 	
 	@Override
@@ -75,7 +75,7 @@ public class LegsActionCodelet extends Codelet{
                                                if (!comm.equals(previousLegsAction)) 
                                                     log.info("Sending Forage command to agent");
                                                 try {  
-                                                      c.rotate(0.01);     
+                                                      c.rotate(2);     
                                                 } catch (Exception e) {
                                                     e.printStackTrace();
                                                 }

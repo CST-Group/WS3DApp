@@ -42,7 +42,7 @@ public class InnerSense extends Codelet {
 	}
 	@Override
 	public void accessMemoryObjects() {
-		innerSenseMO=this.getOutput("INNER");
+		innerSenseMO=(MemoryObject)this.getOutput("INNER");
                 cis = (CreatureInnerSense) innerSenseMO.getI();
 	}
 	
