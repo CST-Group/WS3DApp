@@ -42,7 +42,7 @@ public class ExperimentMain {
 
 
 	/**
-	 * @param args
+	 * @param args Main arguments
 	 */
 	public static void main(String[] args) {
 		ExperimentMain em = new ExperimentMain();

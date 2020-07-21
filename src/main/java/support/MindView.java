@@ -58,6 +58,8 @@ public class MindView extends javax.swing.JFrame {
     Random r = new Random();
     /**
      * Creates new form NewJFrame
+     * 
+     *  @param name Mind name
      */
     public MindView(String name) {
         initComponents();
