@@ -1,0 +1,72 @@
+plugins {
+	id 'java-library-distribution'
+  	id 'jacoco'
+  	id 'application'
+}
+
+application {
+    mainClassName = 'ExperimentMain'
+}
+
+description = "WS3DApp - A Demo to Control WS3D using CST"
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+version = '0.0.2'
+
+repositories {
+    mavenCentral()
+    maven { 
+    	url 'https://jitpack.io'
+    }
+    maven { 
+    	url "https://github.com/rosjava/rosjava_mvn_repo/raw/master"
+    }
+    maven {
+      url "http://repository.springsource.com/maven/bundles/release"
+    }
+    maven {
+      url "http://repository.springsource.com/maven/bundles/external"
+    }
+    flatDir {
+        dirs 'libs'
+    }
+}
+
+dependencies {
+   implementation 'com.github.CST-Group:cst:0f94e6c'
+   implementation 'com.github.CST-Group:WS3DProxy:0.0.1'
+   implementation 'org.json:json:20200518'
+
+   testImplementation group: 'junit', name: 'junit', version: '4.12' 
+}
+
+task javadocJar(type: Jar) {
+    classifier = 'javadoc'
+    from javadoc
+}
+task sourcesJar(type: Jar) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+artifacts
+{
+    archives javadocJar, sourcesJar
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled true
+    }
+}
+
+task uberJar(type: Jar) {
+    archiveClassifier = 'uber'
+
+    from sourceSets.main.output
+
+    dependsOn configurations.runtimeClasspath
+    from {
+        configurations.runtimeClasspath.findAll { it.name.endsWith('jar') }.collect { zipTree(it) }
+    }
+}
