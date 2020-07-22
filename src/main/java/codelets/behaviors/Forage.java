@@ -53,23 +53,18 @@ public class Forage extends Codelet {
 		JSONObject message=new JSONObject();
 			try {
 				message.put("ACTION", "FORAGE");
-				legsMO.updateI(message.toString());
+				legsMO.setI(message.toString());
 			
 			} catch (JSONException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
             }            
-		
 	}
 
 	@Override
 	public void accessMemoryObjects() {
             knownMO = (MemoryObject)this.getInput("KNOWN_APPLES");
             legsMO=(MemoryObject)this.getOutput("LEGS");
-
-		// TODO Auto-generated method stub
-		
 	}
         
         @Override

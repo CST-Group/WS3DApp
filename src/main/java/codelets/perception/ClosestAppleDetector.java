@@ -19,8 +19,6 @@
 
 package codelets.perception;
 
-
-
 import br.unicamp.cst.core.entities.Codelet;
 import br.unicamp.cst.core.entities.MemoryObject;
 import java.util.Collections;

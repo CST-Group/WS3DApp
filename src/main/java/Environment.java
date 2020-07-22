@@ -43,16 +43,9 @@ public class Environment {
              World.createFood(0, 250, 210);
              c = proxy.createCreature(100,450,0);
              c.start();
-             //c.setRobotID("r0");
-             //c.startCamera("r0");
-             
-             
           } catch (CommandExecException e) {
               
           }
           System.out.println("Robot "+c.getName()+" is ready to go.");
-		
-
-
 	}
 }

@@ -41,7 +41,6 @@ public class Vision extends Codelet{
 
 	public Vision(Creature nc) {
             c = nc;		
-
 	}
 
 	@Override
@@ -54,10 +53,7 @@ public class Vision extends Codelet{
              c.updateState();
              synchronized (visionMO) {
              List<Thing> lt = c.getThingsInVision();
-             //System.out.println("Vision:" + lt.toString());
              visionMO.setI(lt);
-             //Class cl = List.class;
-             //visionMO.setT(cl);
              }
 	}//end proc()
 
@@ -65,9 +61,6 @@ public class Vision extends Codelet{
 	public void calculateActivation() {
 
 	}
-
-
-
 }// class end		
 
 

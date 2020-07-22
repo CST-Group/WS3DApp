@@ -76,7 +76,6 @@ public class EatClosestApple extends Codelet {
                                 
 
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 
@@ -95,25 +94,18 @@ public class EatClosestApple extends Codelet {
 				if(distance<reachDistance){ //eat it						
 					message.put("OBJECT", appleName);
 					message.put("ACTION", "EATIT");
-					handsMO.updateI(message.toString());
+					handsMO.setI(message.toString());
                                         DestroyClosestApple();
 				}else{
-					handsMO.updateI("");	//nothing
+					handsMO.setI("");	//nothing
 				}
 				
-//				System.out.println(message);
 			} catch (JSONException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}else{
-			handsMO.updateI("");	//nothing
+			handsMO.setI("");	//nothing
 		}
-        //System.out.println("Before: "+known.size()+ " "+known);
-        
-        //System.out.println("After: "+known.size()+ " "+known);
-	//System.out.println("EatClosestApple: "+ handsMO.getInfo());	
-
 	}
         
         @Override
@@ -126,7 +118,7 @@ public class EatClosestApple extends Codelet {
            int i = 0;
            synchronized(known) {
              CopyOnWriteArrayList<Thing> myknown = new CopyOnWriteArrayList<>(known);  
-             for (Thing t : known) {
+             for (Thing t : myknown) {
               if (closestApple != null) 
                  if (t.getName().equals(closestApple.getName())) r = i;
               i++;

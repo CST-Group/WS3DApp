@@ -81,12 +81,9 @@ public class MindView extends javax.swing.JFrame {
         if (mol.size() != 0) 
             for (MemoryObject mo : mol) {
                 if (mo.getI() != null) {
-                    //Class cl = mo.getT();
-                    //Object k = cl.cast(mo.getI());
                     Object k = mo.getI();
                     String moName = mo.getName();
                     if (moName.equals("KNOWN_APPLES") || moName.equals("VISION")) {
-                        //alltext += mo.getName()+": "+k+"<-> ";
                         alltext += mo.getName()+": [ ";
                         CopyOnWriteArrayList<Thing> l = new CopyOnWriteArrayList<>((List<Thing>)k);
                         for (Thing t : l) {
@@ -106,7 +103,6 @@ public class MindView extends javax.swing.JFrame {
                     alltext += mo.getName()+": "+k+"\n";
                 }
                 else
-                    //alltext += mo.getName()+": "+mo.getI()+"\n";
                     alltext += mo.getName()+":\n";
             }   
         text.setText(alltext);
@@ -119,7 +115,6 @@ public class MindView extends javax.swing.JFrame {
             }
             j = 0;
         }
-        //System.out.println("i");
     }
 
     /**

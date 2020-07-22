@@ -56,7 +56,6 @@ public class AppleDetector extends Codelet {
             CopyOnWriteArrayList<Thing> vision;
             List<Thing> known;
             synchronized (visionMO) {
-               //vision = Collections.synchronizedList((List<Thing>) visionMO.getI());
                vision = new CopyOnWriteArrayList((List<Thing>) visionMO.getI());    
                known = Collections.synchronizedList((List<Thing>) knownApplesMO.getI());
                //known = new CopyOnWriteArrayList((List<Thing>) knownApplesMO.getI());    
@@ -82,7 +81,6 @@ public class AppleDetector extends Codelet {
         public void calculateActivation() {
         
         }
-
 
 }//end class
 

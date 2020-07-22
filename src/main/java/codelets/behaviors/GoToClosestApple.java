@@ -94,7 +94,7 @@ public class GoToClosestApple extends Codelet {
 					message.put("Y", (int)appleY);
                                         message.put("SPEED", 0.0);	
 				}
-				legsMO.updateI(message.toString());
+				legsMO.setI(message.toString());
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}	

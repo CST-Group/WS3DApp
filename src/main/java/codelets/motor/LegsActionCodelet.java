@@ -19,9 +19,7 @@
 
 package codelets.motor;
 
-
 import org.json.JSONObject;
-
 import br.unicamp.cst.core.entities.Codelet;
 import br.unicamp.cst.core.entities.MemoryObject;
 import java.util.Random;
@@ -39,8 +37,6 @@ import ws3dproxy.model.Creature;
 public class LegsActionCodelet extends Codelet{
 
 	private MemoryObject legsActionMO;
-	private double previousTargetx=0;
-	private double previousTargety=0;
 	private String previousLegsAction="";
         private Creature c;
         double old_angle = 0;
@@ -61,9 +57,7 @@ public class LegsActionCodelet extends Codelet{
             
                 String comm = (String) legsActionMO.getI();
                 if (comm == null) comm = "";
-                Random r = new Random();
-		
-		if(!comm.equals("") ){
+		if(!comm.equals("")){
 			
 			try {
 				JSONObject command=new JSONObject(comm);
@@ -71,7 +65,6 @@ public class LegsActionCodelet extends Codelet{
                                     int x=0,y=0;
                                     String action=command.getString("ACTION");
                                     if(action.equals("FORAGE")){
-                                               //if (!comm.equals(previousLegsAction)) { 
                                                if (!comm.equals(previousLegsAction)) 
                                                     log.info("Sending Forage command to agent");
                                                 try {  
@@ -92,8 +85,6 @@ public class LegsActionCodelet extends Codelet{
                                             } catch(Exception e) {
                                                 e.printStackTrace();
                                             }
-					    previousTargetx=targetx;
-					    previousTargety=targety;
                                         }
                                         
 				    } else {
